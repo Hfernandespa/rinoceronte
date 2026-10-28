@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa Rinoceronte de Levantamento Terra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --vermelho: #c0392b;
+            --vermelho-claro: #e74c3c;
+            --preto: #0a0a0a;
+            --cinza-escuro: #1a1a1a;
+            --cinza: #2c2c2c;
+            --branco: #f0f0f0;
+            --dourado: #f39c12;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--preto);
+            color: var(--branco);
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 10px 0;
+            border-bottom: 2px solid var(--vermelho);
+        }
+
+        nav .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav .logo-nav img {
+            height: 45px;
+            width: auto;
+        }
+
+        nav .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--branco);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav .logo-text span {
+            color: var(--vermelho-claro);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: var(--branco);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--vermelho-claro);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--branco);
+            background: none;
+            border: none;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: 
+                radial-gradient(ellipse at center, rgba(192, 57, 43, 0.15) 0%, transparent 70%),
+                linear-gradient(180deg, var(--preto) 0%, var(--cinza-escuro) 100%);
+            padding: 120px 20px 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c0392b' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-logo {
+            margin: 0 auto 30px;
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(192, 57, 43, 0.4));
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from { filter: drop-shadow(0 0 20px rgba(192, 57, 43, 0.3)); }
+            to { filter: drop-shadow(0 0 40px rgba(192, 57, 43, 0.6)); }
+        }
+
+        .hero .data-badge {
+            display: inline-block;
+            background: var(--vermelho);
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding: 15px 40px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(192, 57, 43, 0.5);
+        }
+
+        .hero .data-badge span {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            opacity: 0.9;
+        }
+
+        .hero .cta-btn {
+            display: inline-block;
+            background: var(--vermelho);
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(192, 57, 43, 0.4);
+        }
+
+        .hero .cta-btn:hover {
+            background: var(--vermelho-claro);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(192, 57, 43, 0.6);
+        }
+
+        .hero .slogan {
+            margin-top: 30px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            color: var(--vermelho-claro);
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        /* ===== SEÇÕES ===== */
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--vermelho);
+            margin: 15px auto 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== CATEGORIAS ===== */
+        .categorias {
+            background: var(--cinza-escuro);
+        }
+
+        .categorias-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .categoria-card {
+            background: var(--cinza);
+            border: 2px solid var(--vermelho);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .categoria-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(192, 57, 43, 0.3);
+        }
+
+        .categoria-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .categoria-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            color: var(--vermelho-claro);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .categoria-card p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* ===== PREÇOS ===== */
+        .precos {
+            background: var(--preto);
+        }
+
+        .precos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .preco-card {
+            background: var(--cinza-escuro);
+            border: 2px solid var(--cinza);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preco-card.destaque {
+            border-color: var(--vermelho);
+            transform: scale(1.05);
+        }
+
+        .preco-card.destaque::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--vermelho);
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            letter-spacing: 2px;
+        }
+
+        .preco-card:hover {
+            border-color: var(--vermelho-claro);
+        }
+
+        .preco-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .preco-card .preco {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--vermelho-claro);
+            margin-bottom: 5px;
+        }
+
+        .preco-card .preco small {
+            font-size: 1.5rem;
+        }
+
+        .preco-card .preco-desc {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .preco-card ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .preco-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--cinza);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .preco-card ul li::before {
+            content: '✓ ';
+            color: var(--vermelho-claro);
+            font-weight: bold;
+        }
+
+        /* ===== INFO ===== */
+        .info {
+            background: var(--cinza-escuro);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .info-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .info-card .info-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .info-card h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            color: var(--vermelho-claro);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .info-card p {
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== FORMULÁRIO ===== */
+        .inscricao {
+            background: 
+                radial-gradient(ellipse at center, rgba(192, 57, 43, 0.1) 0%, transparent 70%),
+                var(--preto);
+        }
+
+        .form-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--cinza-escuro);
+            border: 2px solid var(--vermelho);
+            border-radius: 15px;
+            padding: 50px 40px;
+            box-shadow: 0 0 50px rgba(192, 57, 43, 0.15);
+        }
+
+        .form-container h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--vermelho-claro);
+        }
+
+        .form-container .form-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 35px;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ccc;
+            margin-bottom: 8px;
+        }
+
+        .form-group label .required {
+            color: var(--vermelho-claro);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--cinza);
+            border: 2px solid var(--cinza);
+            border-radius: 8px;
+            color: var(--branco);
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--vermelho);
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c0392b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+        }
+
+        .form-group select option {
+            background: var(--cinza-escuro);
+            color: var(--branco);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-total {
+            background: var(--cinza);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid var(--vermelho);
+        }
+
+        .form-total .total-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aaa;
+        }
+
+        .form-total .total-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--vermelho-claro);
+        }
+
+        .btn-whatsapp {
+            width: 100%;
+            padding: 18px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-whatsapp:hover {
+            background: #20bd5a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .form-note {
+            text-align: center;
+            margin-top: 15px;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--cinza-escuro);
+            border-top: 3px solid var(--vermelho);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        footer .footer-logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        footer .footer-logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: var(--branco);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        footer .footer-logo-text span {
+            color: var(--vermelho-claro);
+        }
+
+        footer p {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        footer .slogan-footer {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            color: var(--vermelho-claro);
+            font-style: italic;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 992px) {
+            .categorias-grid,
+            .precos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .preco-card.destaque {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                border-bottom: 2px solid var(--vermelho);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-logo {
+                max-width: 300px;
+            }
+
+            .hero .data-badge {
+                font-size: 2rem;
+                padding: 12px 30px;
+            }
+
+            .categorias-grid,
+            .precos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo-nav">
+                <img src="logo.png" alt="Copa Rinoceronte Logo">
+                <div class="logo-text">Copa <span>Rinoceronte</span></div>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#categorias">Categorias</a></li>
+                <li><a href="#precos">Inscrição</a></li>
+                <li><a href="#info">Informações</a></li>
+                <li><a href="#inscricao">Inscreva-se</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="logo.png" alt="Copa Rinoceronte de Levantamento Terra">
+            </div>
+            <div class="data-badge">
+                <span>DATA</span>
+                29/11
+            </div>
+            <br><br>
+            <a href="#inscricao" class="cta-btn">Inscreva-se Agora</a>
+            <p class="slogan">"Levante mais que peso, levante seu nome!"</p>
+        </div>
+    </section>
+
+    <!-- CATEGORIAS -->
+    <section class="categorias" id="categorias">
+        <div class="container">
+            <h2 class="section-title">Categorias</h2>
+            <div class="categorias-grid">
+                <div class="categoria-card">
+                    <div class="icon">🔥</div>
+                    <h3>JR</h3>
+                    <p>Para atletas jovens e iniciantes que estão começando sua jornada no levantamento terra. Mostre seu potencial!</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="icon">💪</div>
+                    <h3>Open</h3>
+                    <p>Categoria livre para todos os atletas. Aqui a competição é de alto nível e só os mais fortes se destacam.</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="icon"></div>
+                    <h3>Master</h3>
+                    <p>Para atletas experientes e veteranos. A experiência e a técnica fazem a diferença nesta categoria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREÇOS -->
+    <section class="precos" id="precos">
+        <div class="container">
+            <h2 class="section-title">Valores de Inscrição</h2>
+            <div class="precos-grid">
+                <div class="preco-card">
+                    <h3>Inscrição Individual</h3>
+                    <div class="preco"><small>R$</small> 90</div>
+                    <p class="preco-desc">Por atleta / categoria</p>
+                    <ul>
+                        <li>1 categoria de competição</li>
+                        <li>Camiseta do evento</li>
+                        <li>Certificado de participação</li>
+                        <li>Acesso à área de atletas</li>
+                    </ul>
+                </div>
+                <div class="preco-card destaque">
+                    <h3>Dobra de Categoria</h3>
+                    <div class="preco"><small>R$</small> 130</div>
+                    <p class="preco-desc">2 categorias</p>
+                    <ul>
+                        <li>2 categorias de competição</li>
+                        <li>Camiseta do evento</li>
+                        <li>Certificado de participação</li>
+                        <li>Acesso à área de atletas</li>
+                        <li>Desconto de R$50</li>
+                    </ul>
+                </div>
+                <div class="preco-card">
+                    <h3>Equipes</h3>
+                    <div class="preco"><small>R$</small> 150</div>
+                    <p class="preco-desc">Por equipe completa</p>
+                    <ul>
+                        <li>Inscrição de equipe</li>
+                        <li>Camisetas da equipe</li>
+                        <li>Certificados</li>
+                        <li>Troféu para melhores</li>
+                        <li>Área exclusiva</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMAÇÕES -->
+    <section class="info" id="info">
+        <div class="container">
+            <h2 class="section-title">Informações do Evento</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">🏆</div>
+                    <h4>Campeões</h4>
+                    <p>Troféu para os melhores atletas e equipes da competição</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">⚖️</div>
+                    <h4>Regras</h4>
+                    <p>Regras da Federação Paraense de Powerlifting</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🏋️</div>
+                    <h4>Atletas</h4>
+                    <p>Prepare-se para mostrar sua força e fazer história!</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">⚡</div>
+                    <h4>Força</h4>
+                    <p>Disciplina, Foco e Superação — os pilares do evento</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULÁRIO DE INSCRIÇÃO -->
+    <section class="inscricao" id="inscricao">
+        <div class="container">
+            <h2 class="section-title">Formulário de Inscrição</h2>
+            <div class="form-container">
+                <h2>🦏 Inscreva-se</h2>
+                <p class="form-subtitle">Preencha seus dados e envie pelo WhatsApp</p>
+
+                <form id="formInscricao" onsubmit="enviarWhatsApp(event)">
+                    <div class="form-group">
+                        <label>Nome Completo <span class="required">*</span></label>
+                        <input type="text" id="nome" required placeholder="Seu nome completo">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Idade <span class="required">*</span></label>
+                            <input type="number" id="idade" required placeholder="Sua idade" min="14" max="99">
+                        </div>
+                        <div class="form-group">
+                            <label>Peso (kg) <span class="required">*</span></label>
+                            <input type="number" id="peso" required placeholder="Seu peso" step="0.1" min="30">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Telefone / WhatsApp <span class="required">*</span></label>
+                            <input type="tel" id="telefone" required placeholder="(91) 99999-9999">
+                        </div>
+                        <div class="form-group">
+                            <label>Cidade <span class="required">*</span></label>
+                            <input type="text" id="cidade" required placeholder="Sua cidade">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Categoria <span class="required">*</span></label>
+                            <select id="categoria" required onchange="calcularTotal()">
+                                <option value="">Selecione...</option>
+                                <option value="JR">JR (Jovem)</option>
+                                <option value="Open">Open (Livre)</option>
+                                <option value="Master">Master (Veterano)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de Inscrição <span class="required">*</span></label>
+                            <select id="tipoInscricao" required onchange="calcularTotal()">
+                                <option value="">Selecione...</option>
+                                <option value="Individual - R$90">Individual - R$90</option>
+                                <option value="Dobra de Categoria - R$130">Dobra de Categoria - R$130</option>
+                                <option value="Equipe - R$150">Equipe - R$150</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nome da Equipe (se aplicável)</label>
+                        <input type="text" id="equipe" placeholder="Nome da sua equipe">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Recorde Pessoal no Levantamento Terra (kg)</label>
+                        <input type="number" id="recorde" placeholder="Seu PR no terra" step="0.5" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Observações</label>
+                        <textarea id="observacoes" placeholder="Alguma observação adicional?"></textarea>
+                    </div>
+
+                    <div class="form-total">
+                        <div class="total-label">Valor da Inscrição</div>
+                        <div class="total-value" id="totalValor">R$ 0</div>
+                    </div>
+
+                    <button type="submit" class="btn-whatsapp">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        Enviar Inscrição pelo WhatsApp
+                    </button>
+
+                    <p class="form-note">📱 Você será redirecionado para o WhatsApp com seus dados preenchidos</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">
+            <img src="logo.png" alt="Copa Rinoceronte">
+            <div class="footer-logo-text">Copa <span>Rinoceronte</span></div>
+        </div>
+        <p class="slogan-footer">"Levante mais que peso, levante seu nome!"</p>
+        <p>© 2026 Copa Rinoceronte de Levantamento Terra — Todos os direitos reservados</p>
+        <p style="margin-top: 8px; color: #555;">Regras da Federação Paraense de Powerlifting</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+
+        function calcularTotal() {
+            const tipo = document.getElementById('tipoInscricao').value;
+            const totalEl = document.getElementById('totalValor');
+
+            if (tipo.includes('90')) {
+                totalEl.textContent = 'R$ 90';
+            } else if (tipo.includes('130')) {
+                totalEl.textContent = 'R$ 130';
+            } else if (tipo.includes('150')) {
+                totalEl.textContent = 'R$ 150';
+            } else {
+                totalEl.textContent = 'R$ 0';
+            }
+        }
+
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                if (value.length > 6) {
+                    value = `(${value.slice(0,2)}) ${value.slice(2,7)}-${value.slice(7)}`;
+                } else if (value.length > 2) {
+                    value = `(${value.slice(0,2)}) ${value.slice(2)}`;
+                } else if (value.length > 0) {
+                    value = `(${value}`;
+                }
+            }
+            e.target.value = value;
+        });
+
+        function enviarWhatsApp(event) {
+            event.preventDefault();
+
+            const numeroWhatsApp = '5591999999999'; // ← TROQUE PELO NÚMERO REAL
+
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+            const peso = document.getElementById('peso').value;
+            const telefone = document.getElementById('telefone').value;
+            const cidade = document.getElementById('cidade').value;
+            const categoria = document.getElementById('categoria').value;
+            const tipoInscricao = document.getElementById('tipoInscricao').value;
+            const equipe = document.getElementById('equipe').value;
+            const recorde = document.getElementById('recorde').value;
+            const observacoes = document.getElementById('observacoes').value;
+
+            let mensagem = `🦏 *INSCRIÇÃO - COPA RINOCERONTE*\n`;
+            mensagem += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+            mensagem += `👤 *Nome:* ${nome}\n`;
+            mensagem += `🎂 *Idade:* ${idade} anos\n`;
+            mensagem += `⚖️ *Peso:* ${peso} kg\n`;
+            mensagem += `📱 *Telefone:* ${telefone}\n`;
+            mensagem += ` *Cidade:* ${cidade}\n\n`;
+            mensagem += `🏋️ *Categoria:* ${categoria}\n`;
+            mensagem += ` *Tipo:* ${tipoInscricao}\n`;
+
+            if (equipe) mensagem += ` *Equipe:* ${equipe}\n`;
+            if (recorde) mensagem += ` *Recorde Pessoal:* ${recorde} kg\n`;
+            if (observacoes) mensagem += `\n📝 *Observações:* ${observacoes}\n`;
+
+            mensagem += `\n━━━━━━━━━━━━━━━━━━━━\n`;
+            mensagem += `📅 *Data do Evento:* 29/11\n`;
+            mensagem += `✅ _Inscrição enviada pelo site_`;
+
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+            window.open(urlWhatsApp, '_blank');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('animate');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.categoria-card, .preco-card, .info-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
