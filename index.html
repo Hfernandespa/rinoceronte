@@ -20,19 +20,34 @@
         body { font-family: 'Roboto', sans-serif; background-color: var(--preto); color: var(--branco); overflow-x: hidden; }
 
         /* NAVBAR */
-        nav { position: fixed; top: 0; width: 100%; background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 100%); backdrop-filter: blur(15px); z-index: 1000; padding: 12px 0; border-bottom: 1px solid rgba(192, 57, 43, 0.5); transition: all 0.3s; }
-        nav.scrolled { background: rgba(0, 0, 0, 0.98); border-bottom: 2px solid var(--vermelho); }
-        nav .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        nav .logo-nav { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        nav .logo-nav img { height: 50px; width: auto; filter: drop-shadow(0 0 8px rgba(192, 57, 43, 0.5)); }
-        nav .logo-text { font-family: 'Oswald', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--branco); text-transform: uppercase; letter-spacing: 2px; line-height: 1.2; }
-        nav .logo-text span { color: var(--vermelho-claro); font-size: 1.3rem; }
-        nav ul { list-style: none; display: flex; gap: 30px; }
-        nav ul li a { color: var(--branco); text-decoration: none; font-family: 'Oswald', sans-serif; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; position: relative; padding-bottom: 5px; }
-        nav ul li a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--vermelho-claro); transition: width 0.3s; }
+        nav { position: fixed; top: 0; width: 100%; background: #000; z-index: 1000; padding: 0; border-bottom: 2px solid var(--vermelho); }
+        nav .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; align-items: center; padding: 0 20px; }
+        nav ul { list-style: none; display: flex; gap: 40px; padding: 18px 0; }
+        nav ul li a {
+            color: var(--branco);
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: all 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--vermelho-claro);
+            transition: width 0.3s;
+        }
         nav ul li a:hover { color: var(--vermelho-claro); }
         nav ul li a:hover::after { width: 100%; }
-        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--branco); background: none; border: none; }
+        .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--branco); background: none; border: none; position: absolute; right: 20px; top: 15px; }
 
         /* HERO */
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; background: url('background.jpg') center center / cover no-repeat fixed; padding: 120px 20px 80px; }
@@ -68,6 +83,61 @@
         .categoria-card h3 { font-family: 'Oswald', sans-serif; font-size: 2.2rem; color: var(--vermelho-claro); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 3px; }
         .categoria-card p { color: #999; font-size: 0.95rem; line-height: 1.6; }
 
+        /* INFORMAÇÕES */
+        .informacoes { background: var(--preto); position: relative; }
+        .info-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, var(--cinza-escuro), rgba(10,10,10,0.95));
+            border: 1px solid rgba(192, 57, 43, 0.4);
+            border-radius: 15px;
+            padding: 50px 45px;
+            box-shadow: 0 0 60px rgba(192, 57, 43, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .info-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--vermelho), transparent); }
+        .info-intro { text-align: center; color: #ccc; font-size: 1.05rem; line-height: 1.7; margin-bottom: 35px; }
+        .info-list { list-style: none; }
+        .info-list li {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 1rem;
+            color: #ddd;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .info-list li:last-child { border-bottom: none; }
+        .info-list li strong {
+            color: var(--vermelho-claro);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 130px;
+        }
+        .info-contatos { margin-top: 35px; padding-top: 25px; border-top: 2px solid rgba(192, 57, 43, 0.3); }
+        .info-contatos h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: var(--vermelho-claro);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .contato-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 0;
+            color: #ccc;
+            font-size: 1rem;
+        }
+        .contato-item span { color: #888; }
+
         /* FORMULÁRIO */
         .inscricao { background: var(--preto); position: relative; }
         .form-container { max-width: 700px; margin: 0 auto; background: linear-gradient(145deg, var(--cinza-escuro), rgba(10,10,10,0.95)); border: 1px solid rgba(192, 57, 43, 0.4); border-radius: 15px; padding: 55px 45px; box-shadow: 0 0 60px rgba(192, 57, 43, 0.1); position: relative; overflow: hidden; }
@@ -83,11 +153,9 @@
         .form-group select option { background: var(--cinza-escuro); color: var(--branco); }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .form-group textarea { resize: vertical; min-height: 80px; }
-        
         .form-total { background: rgba(44, 44, 44, 0.3); border-radius: 8px; padding: 25px; text-align: center; margin-bottom: 30px; border: 1px solid rgba(192, 57, 43, 0.3); }
         .form-total .total-label { font-family: 'Oswald', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; color: #888; }
         .form-total .total-value { font-family: 'Oswald', sans-serif; font-size: 3rem; font-weight: 700; color: var(--vermelho-claro); text-shadow: 0 0 20px rgba(231, 76, 60, 0.3); }
-        
         .btn-whatsapp { width: 100%; padding: 20px; background: linear-gradient(135deg, #25D366, #20bd5a); color: white; border: none; border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 1.3rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 12px; box-shadow: 0 5px 25px rgba(37, 211, 102, 0.3); margin-top: 10px; }
         .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgba(37, 211, 102, 0.5); }
         .btn-whatsapp svg { width: 28px; height: 28px; }
@@ -101,8 +169,6 @@
         .footer-logo-text span { color: var(--vermelho-claro); }
         footer .slogan-footer { font-family: 'Oswald', sans-serif; font-size: 1.2rem; color: var(--vermelho-claro); font-style: italic; margin-bottom: 20px; letter-spacing: 3px; }
         footer p { color: #555; font-size: 0.85rem; margin-bottom: 5px; }
-        
-        /* CRÉDITOS HSF */
         .dev-credit { margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
         .dev-credit p { color: #555; font-size: 0.8rem; letter-spacing: 1px; }
         .hsf-link { color: #888; text-decoration: none; font-weight: 700; transition: all 0.3s ease; border-bottom: 1px solid transparent; }
@@ -110,7 +176,8 @@
 
         /* RESPONSIVO */
         @media (max-width: 768px) {
-            nav ul { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(0, 0, 0, 0.98); flex-direction: column; padding: 25px; gap: 18px; border-bottom: 2px solid var(--vermelho); }
+            nav .nav-container { justify-content: center; }
+            nav ul { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #000; flex-direction: column; padding: 20px; gap: 18px; border-bottom: 2px solid var(--vermelho); text-align: center; }
             nav ul.active { display: flex; }
             .menu-toggle { display: block; }
             .hero { background-attachment: scroll; }
@@ -118,8 +185,10 @@
             .hero .data-badge { font-size: 2.2rem; padding: 12px 35px; }
             .categorias-grid { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
-            .form-container { padding: 35px 22px; }
+            .form-container, .info-box { padding: 35px 22px; }
             .section-title { font-size: 2rem; }
+            .info-list li { flex-direction: column; gap: 5px; }
+            .info-list li strong { min-width: auto; }
         }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
         .animate { animation: fadeInUp 0.7s ease forwards; }
@@ -127,21 +196,21 @@
 </head>
 <body>
 
+    <!-- NAVBAR COM OS 5 MENUS -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#inicio" class="logo-nav">
-                <img src="logo.png" alt="Copa Rinoceronte Logo">
-                <div class="logo-text">Copa <span>Rinoceronte</span></div>
-            </a>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <ul id="navMenu">
                 <li><a href="#inicio">Início</a></li>
                 <li><a href="#categorias">Categorias</a></li>
                 <li><a href="#inscricao">Inscrição</a></li>
+                <li><a href="#informacoes">Informações</a></li>
+                <li><a href="#inscreva-se">Inscreva-se</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- HERO / INÍCIO -->
     <section class="hero" id="inicio">
         <div class="hero-content">
             <div class="hero-logo">
@@ -152,11 +221,12 @@
                 29/11/2026
             </div>
             <br>
-            <a href="#inscricao" class="cta-btn">Inscreva-se Agora</a>
+            <a href="#inscreva-se" class="cta-btn">Inscreva-se Agora</a>
             <p class="slogan">"Levante mais que peso, levante seu nome!"</p>
         </div>
     </section>
 
+    <!-- CATEGORIAS -->
     <section class="categorias" id="categorias">
         <div class="container">
             <h2 class="section-title">Categorias</h2>
@@ -174,13 +244,70 @@
                 <div class="categoria-card">
                     <div class="icon">👑</div>
                     <h3>MASTER</h3>
-                    <p>Para atletas experientes e veteranos. A técnica e a vivência fazem a diferença no plataforma.</p>
+                    <p>Para atletas experientes e veteranos. A técnica e a vivência fazem a diferença na plataforma.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- INSCRIÇÃO (valores) -->
     <section class="inscricao" id="inscricao">
+        <div class="container">
+            <h2 class="section-title">Valores de Inscrição</h2>
+            <div class="categorias-grid">
+                <div class="categoria-card">
+                    <div class="icon">🎟️</div>
+                    <h3>R$ 90</h3>
+                    <p>Inscrição individual em uma categoria (JR, Open ou Master)</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="icon">🔁</div>
+                    <h3>R$ 130</h3>
+                    <p>Dobra de categorias — compita em duas categorias com desconto</p>
+                </div>
+                <div class="categoria-card">
+                    <div class="icon">📋</div>
+                    <h3>Como se inscrever</h3>
+                    <p>Preencha o formulário abaixo e envie sua inscrição direto pelo WhatsApp</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFORMAÇÕES -->
+    <section class="informacoes" id="informacoes">
+        <div class="container">
+            <h2 class="section-title">Informações do Evento</h2>
+            <div class="info-box">
+                <p class="info-intro">
+                    É com enorme prazer que anunciamos a <strong style="color: var(--vermelho-claro);">2° Copa Rinoceronte de Levantamento Terra</strong> em Ananindeua!
+                </p>
+                <ul class="info-list">
+                    <li><strong>📅 Data:</strong> 29/11/2026</li>
+                    <li><strong>📍 Local:</strong> ASSUEPA (BR 316, KM9 em frente a Praça Matriz de Ananindeua)</li>
+                    <li><strong>⏰ Hora:</strong> 9:30h</li>
+                    <li><strong>🏅 Categorias:</strong> Jr, Open e Master</li>
+                    <li><strong>💰 Inscrições:</strong> R$90 / R$130 (dobra de categorias)</li>
+                </ul>
+
+                <div class="info-contatos">
+                    <h4>📞 Para mais informações</h4>
+                    <div class="contato-item">
+                        <span>21 98159-5428</span> — <strong style="color: var(--vermelho-claro); font-family: 'Oswald';">Emanoel</strong>
+                    </div>
+                    <div class="contato-item">
+                        <span>91 99128-9050</span> — <strong style="color: var(--vermelho-claro); font-family: 'Oswald';">Pamela Freitas</strong>
+                    </div>
+                    <div class="contato-item">
+                        <span>91 98229-4595</span> — <strong style="color: var(--vermelho-claro); font-family: 'Oswald';">Awry</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULÁRIO INSCREVA-SE -->
+    <section class="inscricao" id="inscreva-se">
         <div class="container">
             <h2 class="section-title">Ficha de Inscrição Oficial</h2>
             <div class="form-container">
@@ -188,19 +315,16 @@
                 <p class="form-subtitle">Preencha todos os campos e envie pelo WhatsApp</p>
 
                 <form id="formInscricao" onsubmit="enviarWhatsApp(event)">
-                    <!-- E-mail -->
                     <div class="form-group">
                         <label>E-mail <span class="required">*</span></label>
                         <input type="email" id="email" required placeholder="Seu e-mail">
                     </div>
 
-                    <!-- Nome Completo -->
                     <div class="form-group">
                         <label>NOME COMPLETO <span class="required">*</span></label>
                         <input type="text" id="nome" required placeholder="Sua resposta">
                     </div>
 
-                    <!-- Data de Nascimento e Celular -->
                     <div class="form-row">
                         <div class="form-group">
                             <label>DATA DE NASCIMENTO <span class="required">*</span></label>
@@ -212,7 +336,6 @@
                         </div>
                     </div>
 
-                    <!-- Categoria -->
                     <div class="form-group">
                         <label>CATEGORIA <span class="required">*</span></label>
                         <select id="categoria" required onchange="calcularTotal()">
@@ -224,7 +347,6 @@
                         </select>
                     </div>
 
-                    <!-- Categoria de Peso FEMININO -->
                     <div class="form-group">
                         <label>Categoria de Peso FEMININO</label>
                         <select id="pesoFeminino" onchange="selecionarPeso('feminino')">
@@ -238,7 +360,6 @@
                         </select>
                     </div>
 
-                    <!-- Categoria de Peso MASCULINO -->
                     <div class="form-group">
                         <label>Categoria de Peso MASCULINO</label>
                         <select id="pesoMasculino" onchange="selecionarPeso('masculino')">
@@ -254,16 +375,13 @@
                         </select>
                     </div>
 
-                    <!-- Campo oculto para armazenar a categoria de peso selecionada -->
                     <input type="hidden" id="categoriaPesoSelecionada">
 
-                    <!-- Equipe -->
                     <div class="form-group">
                         <label>EQUIPE</label>
                         <input type="text" id="equipe" placeholder="Sua resposta">
                     </div>
 
-                    <!-- Total -->
                     <div class="form-total">
                         <div class="total-label">Valor da Inscrição</div>
                         <div class="total-value" id="totalValor">R$ 0</div>
@@ -291,23 +409,12 @@
         </div>
         <p class="slogan-footer">"Levante mais que peso, levante seu nome!"</p>
         <p>© 2026 Copa Rinoceronte de Levantamento Terra — Todos os direitos reservados</p>
-        <p style="margin-top: 10px; color: #666; font-size: 0.8rem;">
-            📞 21 981595428 - Emanoel | 91 991289050 - Pamela Freitas | 91 982294595 - Awry
-        </p>
-        
-        <!-- CRÉDITOS HSF -->
         <div class="dev-credit">
             <p>Desenvolvido com ⚡ por <a href="https://wa.me/5591999999999" target="_blank" class="hsf-link">HSF Digital</a></p>
         </div>
     </footer>
 
     <script>
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        });
-
         function toggleMenu() {
             document.getElementById('navMenu').classList.toggle('active');
         }
@@ -316,40 +423,27 @@
             link.addEventListener('click', () => document.getElementById('navMenu').classList.remove('active'));
         });
 
-        // Máscara de telefone
         document.getElementById('telefone').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length <= 11) {
-                if (value.length > 6) {
-                    value = `(${value.slice(0,2)}) ${value.slice(2,7)}-${value.slice(7)}`;
-                } else if (value.length > 2) {
-                    value = `(${value.slice(0,2)}) ${value.slice(2)}`;
-                } else if (value.length > 0) {
-                    value = `(${value}`;
-                }
+                if (value.length > 6) value = `(${value.slice(0,2)}) ${value.slice(2,7)}-${value.slice(7)}`;
+                else if (value.length > 2) value = `(${value.slice(0,2)}) ${value.slice(2)}`;
+                else if (value.length > 0) value = `(${value}`;
             }
             e.target.value = value;
         });
 
-        // Calcular total baseado na categoria
         function calcularTotal() {
             const categoria = document.getElementById('categoria').value;
             const totalEl = document.getElementById('totalValor');
-
-            if (categoria === 'DOBRA') {
-                totalEl.textContent = 'R$ 130';
-            } else if (categoria && categoria !== '') {
-                totalEl.textContent = 'R$ 90';
-            } else {
-                totalEl.textContent = 'R$ 0';
-            }
+            if (categoria === 'DOBRA') totalEl.textContent = 'R$ 130';
+            else if (categoria && categoria !== '') totalEl.textContent = 'R$ 90';
+            else totalEl.textContent = 'R$ 0';
         }
 
-        // Selecionar categoria de peso (feminino ou masculino)
         function selecionarPeso(tipo) {
             const pesoFem = document.getElementById('pesoFeminino').value;
             const pesoMasc = document.getElementById('pesoMasculino').value;
-            
             if (tipo === 'feminino' && pesoFem) {
                 document.getElementById('pesoMasculino').value = '';
                 document.getElementById('categoriaPesoSelecionada').value = pesoFem;
@@ -361,11 +455,9 @@
             }
         }
 
-        // Enviar para WhatsApp
         function enviarWhatsApp(event) {
             event.preventDefault();
-
-            const numeroWhatsApp = '5521981595428'; // Emanoel
+            const numeroWhatsApp = '5521981595428';
 
             const email = document.getElementById('email').value;
             const nome = document.getElementById('nome').value;
@@ -375,38 +467,25 @@
             const categoriaPeso = document.getElementById('categoriaPesoSelecionada').value;
             const equipe = document.getElementById('equipe').value;
 
-            // Formatar data para PT-BR
             const dataNasc = new Date(nascimento + 'T00:00:00');
             const dataFormatada = dataNasc.toLocaleDateString('pt-BR');
 
-            let mensagem = ` *INSCRIÇÃO OFICIAL - COPA RINOCERONTE 2026*\n`;
+            let mensagem = `🦏 *INSCRIÇÃO OFICIAL - COPA RINOCERONTE 2026*\n`;
             mensagem += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
-            mensagem += ` *E-mail:* ${email}\n`;
+            mensagem += `📧 *E-mail:* ${email}\n`;
             mensagem += `👤 *Nome:* ${nome}\n`;
-            mensagem += ` *Data Nascimento:* ${dataFormatada}\n`;
+            mensagem += `🎂 *Data Nascimento:* ${dataFormatada}\n`;
             mensagem += `📱 *Celular:* ${telefone}\n`;
             mensagem += `🏅 *Categoria:* ${categoria}\n`;
-            
-            if (categoriaPeso) {
-                mensagem += `⚖️ *Categoria de Peso:* ${categoriaPeso}\n`;
-            }
-            
-            if (equipe) {
-                mensagem += `🏋️ *Equipe:* ${equipe}\n`;
-            }
-
-            // Valor
-            if (categoria === 'DOBRA') {
-                mensagem += `💰 *Valor:* R$ 130 (Dobra)\n`;
-            } else {
-                mensagem += `💰 *Valor:* R$ 90\n`;
-            }
-
+            if (categoriaPeso) mensagem += `⚖️ *Categoria de Peso:* ${categoriaPeso}\n`;
+            if (equipe) mensagem += `🏋️ *Equipe:* ${equipe}\n`;
+            if (categoria === 'DOBRA') mensagem += `💰 *Valor:* R$ 130 (Dobra)\n`;
+            else mensagem += `💰 *Valor:* R$ 90\n`;
             mensagem += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
-            mensagem += ` *Data:* 29/11/2026\n`;
-            mensagem += ` *Local:* ASSUEPA (BR 316, KM9)\n`;
-            mensagem += `⏰ *Hora:* 9:30h\n`;
-            mensagem += `\n✅ _Inscrição enviada via Site Oficial_`;
+            mensagem += `📅 *Data:* 29/11/2026\n`;
+            mensagem += `📍 *Local:* ASSUEPA (BR 316, KM9)\n`;
+            mensagem += `⏰ *Hora:* 9:30h\n\n`;
+            mensagem += `✅ _Inscrição enviada via Site Oficial_`;
 
             const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
             window.open(url, '_blank');
