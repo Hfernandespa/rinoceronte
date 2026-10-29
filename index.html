@@ -192,6 +192,148 @@
         }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
         .animate { animation: fadeInUp 0.7s ease forwards; }
+        /* PLAYER DE MÚSICA */
+.music-player {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(145deg, var(--cinza-escuro), var(--preto));
+    border: 2px solid var(--vermelho);
+    border-radius: 12px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 40px rgba(192, 57, 43, 0.4);
+    z-index: 999;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(400px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--vermelho-claro);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.music-icon {
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.player-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    background: var(--vermelho);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+}
+
+.control-btn:hover {
+    background: var(--vermelho-claro);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+}
+
+.control-btn.stop {
+    background: var(--cinza);
+    width: 35px;
+    height: 35px;
+}
+
+.control-btn.stop:hover {
+    background: #e74c3c;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #888;
+}
+
+.volume-slider {
+    width: 80px;
+    height: 4px;
+    background: var(--cinza);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: var(--vermelho-claro);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+}
+
+@media (max-width: 768px) {
+    .music-player {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        padding: 12px 15px;
+    }
+    .player-info { display: none; }
+    .volume-slider { width: 60px; }
+}
+        // CONTROLE DE MÚSICA
+const audio = document.getElementById('audioPlayer');
+const playBtn = document.getElementById('playIcon');
+let isPlaying = false;
+
+function togglePlay() {
+    if (isPlaying) {
+        audio.pause();
+        playBtn.innerHTML = '<path d="M8 5v14l11-7z"/>'; // Play
+    } else {
+        audio.play();
+        playBtn.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>'; // Pause
+    }
+    isPlaying = !isPlaying;
+}
+
+function stopMusic() {
+    audio.pause();
+    audio.currentTime = 0;
+    playBtn.innerHTML = '<path d="M8 5v14l11-7z"/>'; // Play
+    isPlaying = false;
+}
+
+function setVolume(value) {
+    audio.volume = value / 100;
+}
+
+// Iniciar com volume em 70%
+audio.volume = 0.7;
     </style>
 </head>
 <body>
