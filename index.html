@@ -370,7 +370,7 @@
             <h2 class="section-title">Valores de Inscrição</h2>
             <div class="categorias-grid">
                 <div class="categoria-card">
-                    <div class="icon">️</div>
+                    <div class="icon">🎟️</div>
                     <h3>R$ 90</h3>
                     <p>Inscrição individual em uma categoria (JR, Open ou Master)</p>
                 </div>
@@ -397,7 +397,7 @@
                     É com enorme prazer que anunciamos a <strong style="color: var(--vermelho-claro);">2° Copa Rinoceronte de Levantamento Terra</strong> em Ananindeua!
                 </p>
                 <ul class="info-list">
-                    <li><strong>📅 Data:</strong> 29/11/2026</li>
+                    <li><strong> Data:</strong> 29/11/2026</li>
                     <li><strong>📍 Local:</strong> ASSUEPA (BR 316, KM9 em frente a Praça Matriz de Ananindeua)</li>
                     <li><strong>⏰ Hora:</strong> 9:30h</li>
                     <li><strong>🏅 Categorias:</strong> Jr, Open e Master</li>
@@ -528,7 +528,7 @@
         </div>
     </footer>
 
-    <!-- PLAYER DE MÚSICA -->
+    <!-- PLAYER DE MÚSICA - YOUTUBE -->
     <div class="music-player" id="musicPlayer">
         <div class="player-info">
             <span class="music-icon"></span>
@@ -550,15 +550,12 @@
             <svg viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px;">
                 <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
             </svg>
-            <input type="range" min="0" max="100" value="70" class="volume-slider" onchange="setVolume(this.value)">
+            <input type="range" min="0" max="100" value="50" class="volume-slider" onchange="setVolume(this.value)">
         </div>
     </div>
 
-    <!-- Áudio -->
-    <audio id="audioPlayer" loop preload="auto">
-       <source src="https://www.dropbox.com/scl/fi/oknh0zvzree6yrcutw3xj/collapseeminem.mp3?rlkey=yhl2wlnrzrhb9zzvku8l1zhnq&st=ejy4wt7a&dl=0" type="audio/mpeg">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
+    <!-- YouTube Player (invisível) -->
+    <div id="youtube-player" style="display:none;"></div>
 
     <script>
         function toggleMenu() {
@@ -620,13 +617,13 @@
             mensagem += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
             mensagem += `📧 *E-mail:* ${email}\n`;
             mensagem += `👤 *Nome:* ${nome}\n`;
-            mensagem += `🎂 *Data Nascimento:* ${dataFormatada}\n`;
+            mensagem += ` *Data Nascimento:* ${dataFormatada}\n`;
             mensagem += `📱 *Celular:* ${telefone}\n`;
             mensagem += `🏅 *Categoria:* ${categoria}\n`;
             if (categoriaPeso) mensagem += `⚖️ *Categoria de Peso:* ${categoriaPeso}\n`;
             if (equipe) mensagem += `🏋️ *Equipe:* ${equipe}\n`;
-            if (categoria === 'DOBRA') mensagem += ` *Valor:* R$ 130 (Dobra)\n`;
-            else mensagem += ` *Valor:* R$ 90\n`;
+            if (categoria === 'DOBRA') mensagem += `💰 *Valor:* R$ 130 (Dobra)\n`;
+            else mensagem += `💰 *Valor:* R$ 90\n`;
             mensagem += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
             mensagem += `📅 *Data:* 29/11/2026\n`;
             mensagem += `📍 *Local:* ASSUEPA (BR 316, KM9)\n`;
@@ -637,48 +634,74 @@
             window.open(url, '_blank');
         }
 
-        // CONTROLE DE MÚSICA - CORRIGIDO
-        const audio = document.getElementById('audioPlayer');
-        const playIcon = document.getElementById('playIcon');
+        // CONTROLE DE MÚSICA - YOUTUBE
+        let player;
         let isPlaying = false;
 
-        function togglePlay() {
-            if (isPlaying) {
-                audio.pause();
-                playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; // Play
-            } else {
-                audio.play().catch(error => {
-                    console.error('Erro ao reproduzir:', error);
-                    alert('Clique no player para ativar o som!');
-                });
-                playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>'; // Pause
+        // Carregar API do YouTube
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '0',
+                width: '0',
+                videoId: '9jK-NcRmVcw', // Eminem - Till I Collapse
+                playerVars: {
+                    'controls': 0,
+                    'autoplay': 0,
+                    'loop': 1,
+                    'playlist': '9jK-NcRmVcw',
+                    'rel': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            player.setVolume(50);
+            console.log('Player YouTube pronto!');
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                isPlaying = true;
+                document.getElementById('playIcon').innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+            } else if (event.data === YT.PlayerState.PAUSED) {
+                isPlaying = false;
+                document.getElementById('playIcon').innerHTML = '<path d="M8 5v14l11-7z"/>';
             }
-            isPlaying = !isPlaying;
+        }
+
+        function togglePlay() {
+            if (!player) return;
+            
+            if (isPlaying) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
+            }
         }
 
         function stopMusic() {
-            audio.pause();
-            audio.currentTime = 0;
-            playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; // Play
+            if (!player) return;
+            
+            player.pauseVideo();
+            player.seekTo(0);
             isPlaying = false;
+            document.getElementById('playIcon').innerHTML = '<path d="M8 5v14l11-7z"/>';
         }
 
         function setVolume(value) {
-            audio.volume = value / 100;
+            if (player && player.setVolume) {
+                player.setVolume(value);
+            }
         }
-
-        // Iniciar com volume em 70%
-        audio.volume = 0.7;
-
-        // Verificar se o arquivo carregou
-        audio.addEventListener('error', function(e) {
-            console.error('Erro ao carregar áudio:', e);
-            console.log('Caminho atual:', audio.querySelector('source').src);
-        });
-
-        audio.addEventListener('loadeddata', function() {
-            console.log('Áudio carregado com sucesso!');
-        });
     </script>
 </body>
 </html>
