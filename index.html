@@ -491,5 +491,39 @@
             window.open(url, '_blank');
         }
     </script>
+    <!-- PLAYER DE MÚSICA -->
+<div class="music-player" id="musicPlayer">
+    <div class="player-info">
+        <span class="music-icon">🎵</span>
+        <span class="music-text">Modo Arena</span>
+    </div>
+    <div class="player-controls">
+        <button onclick="togglePlay()" class="control-btn" id="playBtn" title="Play/Pause">
+            <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor" style="width: 24px; height: 24px;">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+        </button>
+        <button onclick="stopMusic()" class="control-btn stop" title="Stop">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;">
+                <path d="M6 6h12v12H6z"/>
+            </svg>
+        </button>
+    </div>
+    <div class="volume-control">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px;">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+        </svg>
+        <input type="range" min="0" max="100" value="70" class="volume-slider" onchange="setVolume(this.value)">
+    </div>
+</div>
+
+<!-- Áudio (substitua o src pela música escolhida) -->
+<audio id="audioPlayer" loop>
+    <!-- Opção 1: Linkin Park - Numb -->
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <!-- Opção 2: Música épica -->
+    <!-- <source src="URL_DA_MUSICA_AQUI.mp3" type="audio/mpeg"> -->
+    Seu navegador não suporta o elemento de áudio.
+</audio>
 </body>
 </html>
